@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Amor</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .card h1 {
+            font-size: 2.5rem;
+            color: #ff6f61;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .heart-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .heart-button:hover {
+            background: #e63946;
+        }
+
+        .heart {
+            font-size: 5rem;
+            color: #ff6f61;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        .heart.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .photo-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .photo-section h2 {
+            font-size: 1.8rem;
+            color: #ff6f61;
+            margin-bottom: 15px;
+        }
+
+        .photo-section input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ff6f61;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .photo-section button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .photo-section button:hover {
+            background: #e63946;
+        }
+
+        .photo-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .photo-gallery img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Para mi amor</h1>
+        <p>
+            Desde el primer momento en que te vi, supe que eras especial. Cada día a tu lado es un regalo,
+            y quiero que sepas cuánto te amo. Eres mi luz, mi paz y mi mayor alegría.
+        </p>
+        <button class="heart-button" onclick="showHeart()">Haz clic para sentir mi amor</button>
+        <div class="heart">❤️</div>
+    </div>
+
+    <div class="photo-section">
+        <h2>Nuestra fecha especial</h2>
+        <form onsubmit="showPhotos(event)">
+            <input type="date" id="specialDate" required>
+            <button type="submit">Ver Fotos</button>
+        </form>
+        <div class="photo-gallery" id="photoGallery"></div>
+    </div>
+
+    <script>
+        function showHeart() {
+            const heart = document.querySelector('.heart');
+            heart.classList.add('show');
+            setTimeout(() => {
+                heart.classList.remove('show');
+            }, 2000);
+        }
+
+        function showPhotos(event) {
+            event.preventDefault();
+            const gallery = document.getElementById('photoGallery');
+            gallery.innerHTML = '';
+
+            const photos = [
+                'photo1.jpg',
+                'photo2.jpg',
+                'photo3.jpg',
+                'photo4.jpg'
+            ];
+
+            photos.forEach(photo => {
+                const img = document.createElement('img');
+                img.src = photo;
+                img.alt = 'Nuestra foto';
+                gallery.appendChild(img);
+            });
+        }
+    </script>
+</body>
+</html>
