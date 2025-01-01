@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carta de Amor</title>
+    <title>Para Anabel</title>
     <style>
         body {
             background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
@@ -124,16 +124,27 @@
             border-radius: 10px;
             object-fit: cover;
         }
+
+        .photo-gallery span {
+            position: relative;
+            top: -80px; /* Ajusta según el tamaño de la imagen */
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 5px;
+            padding: 2px 5px;
+            display: inline-block;
+            font-size: 0.9rem;
+            color: #ff6f61;
+        }
+
     </style>
 </head>
 <body>
     <div class="card">
         <h1>Para mi amor</h1>
         <p>
-            Desde el primer momento en que te vi, supe que eras especial. Cada día a tu lado es un regalo,
-            y quiero que sepas cuánto te amo. Eres mi luz, mi paz y mi mayor alegría.
+            Amorsito hoy cumplimos 3 años de relación y quería dedicarte esta cartita así más orginal y de mi rollo, han sido 3 años que han cambiado mi vida para siempre, 3 años en los que he aprendido a querer gracias a ti y hemos pasado muchos buenos momentos y algunos otros malos, pero al final todo se resuelve y lo importante es seguir adelante. Siempre me haces sonréir y haces mis momentos más agradables, eres la mejor persona que he conocido en mi vida y ya eres una más en la familia, y espero que siga así por mas viajes, comidas juntos y experiencias.
         </p>
-        <button class="heart-button" onclick="showHeart()">Haz clic para sentir mi amor</button>
+        <button class="heart-button" onclick="showHeart()">Pulsa aquí</button>
         <div class="heart">❤️</div>
     </div>
 
@@ -158,21 +169,39 @@
         function showPhotos(event) {
             event.preventDefault();
             const gallery = document.getElementById('photoGallery');
+            const date = document.getElementById('specialDate').value;
+
             gallery.innerHTML = '';
 
-            const photos = [
-                'photo1.jpg',
-                'photo2.jpg',
-                'photo3.jpg',
-                'photo4.jpg'
-            ];
+            const photosByYear = {
+                '2022': 'img/2022.jpg',
+                '2023': 'img/2023.jpg',
+                '2024': 'img/2024.jpg',
+                '2025': 'img/2025.jpg'
+            };
 
-            photos.forEach(photo => {
-                const img = document.createElement('img');
-                img.src = photo;
-                img.alt = 'Nuestra foto';
-                gallery.appendChild(img);
-            });
+            if (date === '2022-01-02') {
+                Object.entries(photosByYear).forEach(([year, photo]) => {
+                    const photoItem = document.createElement('div');
+                    photoItem.classList.add('photo-item');
+
+                    const img = document.createElement('img');
+                    img.src = photo;
+                    img.alt = `${year}`;
+
+                    const caption = document.createElement('span');
+                    caption.textContent = `${year}`;
+
+                    photoItem.appendChild(img);
+                    photoItem.appendChild(caption);
+                    gallery.appendChild(photoItem);
+                });
+            } else {
+                const message = document.createElement('p');
+                message.textContent = 'No hay fotos disponibles para esta fecha.';
+                message.style.color = '#ff6f61';
+                gallery.appendChild(message);
+            }
         }
     </script>
 </body>
